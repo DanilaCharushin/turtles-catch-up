@@ -1,0 +1,26 @@
+<launch>
+  <node 
+    pkg="turtlesim" 
+    type="turtlesim_node" 
+    name="escaping_turtle"
+    output="screen" 
+  >
+  </node>
+  
+  <node 
+    pkg="turtlesim" 
+    type="turtle_teleop_key" 
+    name="keys_publisher" 
+    output="screen" 
+  />
+
+  <node
+    name="turtles_catch_up_node"
+    pkg="turtles_catch_up"
+    type="turtles_catch_up.py"
+    output="screen"
+  >
+    <param name="chasing_turtle_vel" value="0.5" />
+  </node>
+</launch>
+
