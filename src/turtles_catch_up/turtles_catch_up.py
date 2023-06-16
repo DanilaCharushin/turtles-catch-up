@@ -24,6 +24,9 @@ class TurtlesCatchUPNode:
         self.ros_node_name = ros_node_name
         self.ros_service_name = ros_service_name
 
+        rospy.init_node(self.ros_node_name)
+        rospy.wait_for_service(self.ros_service_name)
+
         self.escaping_turtle_name = escaping_turtle_name
         self.chasing_turtle_name = chasing_turtle_name
 
@@ -43,9 +46,6 @@ class TurtlesCatchUPNode:
         self.__init_ros_node()
 
     def __init_ros_node(self) -> None:
-        rospy.init_node(self.ros_node_name)
-        rospy.wait_for_service(self.ros_service_name)
-
         rospy.ServiceProxy(self.ros_service_name, Spawn)(*self.chasing_turtle_spawn_args)
 
         rospy.Subscriber(f"/{self.escaping_turtle_name}/pose", Pose, self.__escaping_turtle_pose_callback)

@@ -3,8 +3,9 @@
     pkg="turtlesim" 
     type="turtlesim_node" 
     name="escaping_turtle"
-    output="screen" 
+    output="screen"
   >
+    <remap from="/turtle1/pose" to="/escaping_turtle/pose" />
   </node>
   
   <node 
